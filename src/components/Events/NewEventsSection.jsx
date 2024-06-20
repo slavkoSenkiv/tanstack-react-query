@@ -8,7 +8,9 @@ export default function NewEventsSection() {
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ['events'], 
-    queryFn: fetchEvents
+    queryFn: fetchEvents,
+    staleTime: 5000,
+    //gcTime: 1000
   });
 
   let content;
@@ -20,7 +22,7 @@ export default function NewEventsSection() {
   if (isError) {
     content = (
       <ErrorBlock title="An error occurred"
-       message={error.info?.message || 'Failed to fatch events'} />
+       message={error.info?.message || 'Failed to fetch events'} />
     );
   }
 
